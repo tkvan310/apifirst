@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!---Coding By CoderGirl | www.codinglabweb.com--->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<title>Login & Registration Form | CoderGirl</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="signUp-signIn.css">
+</head>
+
+<body>
+    <div class="container">
+        <input type="checkbox" id="check">
+        <div class="login form">
+            <header>Login</header>
+            <form id="signIn" action="#">
+                <input id="emailSignIn" type="email" placeholder="Enter your email">
+                <input id="passwordSignIn" type="password" placeholder="Enter your password">
+                <a href="#">Forgot password?</a>
+                <button class="button">Login</button>
+            </form>
+            <div class="signup">
+                <span class="signup">Don't have an account?
+                    <label for="check">Signup</label>
+                </span>
+            </div>
+        </div>
+        <div class="registration form">
+            <header>Signup</header>
+            <form id="signUp" action="#">
+                <input id="username" type="text" placeholder="Enter your name">
+                <input id="emailSignUp" type="text" placeholder="Enter your email">
+                <input id="passwordSignUp" type="password" placeholder="Create a password">
+                <input id="rePassword" type="password" placeholder="Confirm your password">
+                <button class="button">SignUp</button>
+            </form>
+            <div class="signup">
+                <span class="signup">Already have an account?
+                    <label for="check">Login</label>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="signin-signup.js"></script>
+</body>
+
+</html>
