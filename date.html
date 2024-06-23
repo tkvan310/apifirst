@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timers</title>
+
+    <style>
+        .timer {
+            margin: 10px 0;
+        }
+
+        .controls button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="timers">
+        <div class="timer" id="timer1">
+            1. <span class="time">00:00:00</span>
+            <div class="controls">
+                <button class="start">Start</button>
+                <button class="pause">Pause</button>
+                <button class="stop">Stop</button>
+            </div>
+        </div>
+        <div class="timer" id="timer2">
+            2. <span class="time">00:00:00</span>
+            <div class="controls">
+                <button class="start">Start</button>
+                <button class="pause">Pause</button>
+                <button class="stop">Stop</button>
+            </div>
+        </div>
+        <div class="timer" id="timer3">
+            3. <span class="time">00:00:00</span>
+            <div class="controls">
+                <button class="start">Start</button>
+                <button class="pause">Pause</button>
+                <button class="stop">Stop</button>
+            </div>
+        </div>
+        <div class="timer" id="timer4">
+            4. <span class="time">00:00:00</span>
+            <div class="controls">
+                <button class="start">Start</button>
+                <button class="pause">Pause</button>
+                <button class="stop">Stop</button>
+            </div>
+        </div>
+        <div class="timer" id="timer5">
+            5. <span class="time">00:00:00</span>
+            <div class="controls">
+                <button class="start">Start</button>
+                <button class="pause">Pause</button>
+                <button class="stop">Stop</button>
+            </div>
+        </div>
+    </div>
+    <button id="startAll">Start All</button>
+    <button id="stopAll">Stop All</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let timers = document.querySelectorAll('.timer');
+            timers.forEach(timer => {
+                let startButton = timer.querySelector('.start');
+                let pauseButton = timer.querySelector('.pause');
+                let stopButton = timer.querySelector('.stop');
+                let timeDisplay = timer.querySelector('.time');
+                let interval;
+                let elapsed = 0;
+                let isRunning = false;
+
+                function formatTime(ms) {
+                    let totalSeconds = Math.floor(ms / 1000);
+                    let minutes = Math.floor(totalSeconds / 60);
+                    let seconds = totalSeconds % 60;
+                    let milliseconds = ms % 1000;
+                    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(3, '0')}`;
+                }
+
+                function updateDisplay() {
+                    timeDisplay.textContent = formatTime(elapsed);
+                }
+
+                startButton.addEventListener('click', function () {
+                    if (!isRunning) {
+                        let startTime = Date.now() - elapsed;
+                        interval = setInterval(function () {
+                            elapsed = Date.now() - startTime;
+                            updateDisplay();
+                        }, 10);
+                        isRunning = true;
+                    }
+                });
+
+                pauseButton.addEventListener('click', function () {
+                    clearInterval(interval);
+                    isRunning = false;
+                });
+
+                stopButton.addEventListener('click', function () {
+                    clearInterval(interval);
+                    elapsed = 0;
+                    updateDisplay();
+                    isRunning = false;
+                });
+            });
+
+            document.getElementById('startAll').addEventListener('click', function () {
+                timers.forEach(timer => {
+                    timer.querySelector('.start').click();
+                });
+            });
+
+            document.getElementById('stopAll').addEventListener('click', function () {
+                timers.forEach(timer => {
+                    timer.querySelector('.stop').click();
+                });
+            });
+        });
+    </script>
+
+    
+</body>
+
+</html>
